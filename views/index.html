@@ -8,7 +8,44 @@
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
-	<h1>The App Works!</h1>
+	<h1 style="text-align:center">The Movie Database</h1>
+	<div class="well container form-inline">
+		<button class="btn btn-danger" onclick="deleteShows()">Delete</button>
+		<input class="form-control" placeholder="Title..." id="movieTitle">
+		<input class="form-control" placeholder="Years..." id="movieYears">
+		<input class="form-control" placeholder="Rating..." id="movieRating">
+		<button class="btn btn-primary" onclick="saveShows()">Submit</button>
+	</div>
+	<div id="buttonsGoHere" style="text-align:center;">
+	</div>
+	
+	<ul id='movies' class='form-inline'>
+	</ul>
+											<!-- MODAL -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <label>Title</label>
+				<input class="form-control" placeholder="Title..." id="editTitle"><br>
+				<label>Years</label>
+				<input class="form-control" placeholder="Years..." id="editYears"><br>
+				<label>Rating</label>
+				<input class="form-control" placeholder="Rating..." id="editRating"><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <span id="editSubmitButton"></span>
+      </div>
+    </div>
+  </div>
+</div>
+	<script src="/jquery/dist/jquery.min.js"></script>
+	<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="/javascript/app.js"></script>
 </body>
 </html>
