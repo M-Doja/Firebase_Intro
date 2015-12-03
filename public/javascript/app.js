@@ -1,8 +1,10 @@
+//  Creates an empty Array
 var shows = [];
 
+// This function calls the server to display the data on the server (In the 'shows' Array)
 function getShows(){
   var req = new XMLHttpRequest();
-  req.open("GET", "https://brilliant-fire-3806.firebaseio.com/.json");
+  req.open("GET", "https://movie-rate.firebaseio.com/.json");
   req.onload = function(){
   console.log(req);
   if (200 <= this.status < 400){
@@ -41,7 +43,7 @@ function saveEdit(index){
   var show = new tvShow(title, years, rating);
 
   $.ajax({
-    url: "https://brilliant-fire-3806.firebaseio.com/" + shows[index]._id + "/.json",
+    url: "https://movie-rate.firebaseio.com/" + shows[index]._id + "/.json",
     type: "PUT",
     data: JSON.stringify(show)
   }).success(function(res){
@@ -65,7 +67,7 @@ function saveShows(){
   var show = new tvShow(title, years, rating);
 
   var req = new XMLHttpRequest();
-  req.open('POST',"https://brilliant-fire-3806.firebaseio.com/.json");
+  req.open('POST',"https://movie-rate.firebaseio.com/.json");
   req.onload = function(){
       getShows();
   }
@@ -98,7 +100,7 @@ function saveDelete(){
 //  recursive function
 function deleteShowsFunc(id){
   $.ajax({
-    url:'https://brilliant-fire-3806.firebaseio.com/' + id + '/.json', type: 'DELETE'
+    url:'https://movie-rate.firebaseio.com/' + id + '/.json', type: 'DELETE'
   }).success(function(){
     delCount += 1;
     if(delCount < boxes.length){
