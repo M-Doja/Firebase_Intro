@@ -1,0 +1,4 @@
+
+
+#deleteBtn { background:transparent;border:none;font-size:18px;margin-right:10px;border-radius:3px;}
+#deleteBtn:hover {background-color:rgba(255,0,0,0.5);}

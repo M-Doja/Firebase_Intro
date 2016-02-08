@@ -1,16 +1,40 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
 	<title>app</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap_theme.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
+	<script>
+			function doIt() {
+		 var output = $.ajax({
+		    url: 'https://simple-weather.p.mashape.com/aqi', // The URL to the API. You can get this by clicking on "Show CURL example" from an API profile
+		    type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+		    data: {}, // Additional parameters here
+		    dataType: 'json',
+		    success: function(data) {
+		    	//
+		        //Change data.source to data.something , where something is whichever part of the object you want returned.
+		        //To see the whole object you can output it to your browser console using:
+		        //console.log(data);
+		       	document.getElementById("output").innerHTML = data.source;
+		        },
+		    error: function(err) { alert(err); },
+		    beforeSend: function(xhr) {
+		    xhr.setRequestHeader("X-Mashape-Authorization", "sb4P2UpLAnmshfrYiSK2t2c1piyyp1urPznjsnML4oTGZv9dZv"); // Enter here your Mashape key
+		    }
+		});
+
+
+		}
+
+		</script>
 </head>
 <body>
 	<h1 style="text-align:center">The Movie Rating Database</h1>
 	<div class="well container form-inline">
-		<button class="btn btn-danger" onclick="deleteShows()">Delete</button>
+		<button class="" id='deleteBtn' onclick="deleteShows()">Delete</button>
 		<input class="form-control" placeholder="Title..." id="movieTitle">
 		<input class="form-control" placeholder="Years..." id="movieYears">
 		<input class="form-control" placeholder="Rating..." id="movieRating">
@@ -19,31 +43,36 @@
 	<div id="buttonsGoHere" style="text-align:center;">
 	</div>
 
+	<button onclick="doIt()">Run the request</button>
+  <div id="output">The API request is:</div>
+
 	<ul id='movies' class='form-inline'>
 	</ul>
+
 											<!-- MODAL -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <label>Title</label>
-				<input class="form-control" placeholder="Title..." id="editTitle"><br>
-				<label>Years</label>
-				<input class="form-control" placeholder="Years..." id="editYears"><br>
-				<label>Rating</label>
-				<input class="form-control" placeholder="Rating..." id="editRating"><br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <span id="editSubmitButton"></span>
-      </div>
-    </div>
-  </div>
-</div>
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	      </div>
+	      <div class="modal-body">
+	        <label>Title</label>
+					<input class="form-control" placeholder="Title..." id="editTitle"><br>
+					<label>Years</label>
+					<input class="form-control" placeholder="Years..." id="editYears"><br>
+					<label>Rating</label>
+					<input class="form-control" placeholder="Rating..." id="editRating"><br>
+	      </div>
+
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <span id="editSubmitButton"></span>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<script src="/jquery/dist/jquery.min.js"></script>
 	<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="/javascript/app.js"></script>

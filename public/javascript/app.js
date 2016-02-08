@@ -5,6 +5,7 @@ var shows = [];
 function getShows(){
   var req = new XMLHttpRequest();
   req.open("GET", "https://movie-rate.firebaseio.com/.json");
+
   req.onload = function(){
   console.log(req);
   if (200 <= this.status < 400){
@@ -82,7 +83,7 @@ function deleteShows() {
     elemStr +="<li><input id='"+ shows[i]._id + "'type='checkbox' value='false' class='form-control' style='dislay:inline-block; margin-right:5px; margin-bottom:5px;'/>" + shows[i].title + ": " + shows[i].years + " | " + shows[i].rating + "</li>"
     }
     $("#movies").html(elemStr);
-    $("#buttonsGoHere").html('<button class="btn btn-success" onclick="saveDelete()">Save</button><button class="btn btn-danger" onclick="cancel()">Cancel</button>');
+    $("#buttonsGoHere").html('<button class="btn btn-success" onclick="saveDelete()">Delete</button><button class="btn btn-danger" onclick="cancel()">Cancel</button>');
   }
 function cancel(){
   $("#buttonsGoHere").html('');
@@ -109,4 +110,30 @@ function deleteShowsFunc(id){
       getShows();
     }
   })
+}
+
+function getWeather() {
+$.ajax({
+   url: 'https://simple-weather.p.mashape.com/', // The URL to the API. You can get this in the API page of the API you intend to consume
+   type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+   data: {
+     "location": {
+          "city": "",
+          "country": "",
+          "region": ""
+        },
+     "units": {
+          "distance": "km",
+          "pressure": "mb",
+          "speed": "km/h",
+          "temperature": "F"
+        }
+   }, // Additional parameters here
+   dataType: 'json',
+   success: function(data) { console.dir((data.source)); },
+   error: function(err) { alert(err); },
+   beforeSend: function(xhr) {
+   xhr.setRequestHeader("X-Mashape-Authorization", "WeatherMan"); // Enter here your Mashape key
+   }
+});
 }
